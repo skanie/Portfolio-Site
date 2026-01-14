@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель портфолио</title>
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>⚙️ Админ-панель</h1>
+            <div class="header-actions">
+                <a href="index.html" class="btn btn-secondary" target="_blank">👁️ Просмотр сайта</a>
+                <button class="btn btn-danger" id="resetBtn">🔄 Сбросить к дефолту</button>
+            </div>
+        </header>
+
+        <div class="admin-content">
+            <!-- Personal Info Section -->
+            <section class="admin-section">
+                <h2 class="section-title">👤 Личная информация</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Имя</label>
+                        <input type="text" id="name" placeholder="Илья">
+                    </div>
+                    <div class="form-group">
+                        <label>Должность</label>
+                        <input type="text" id="position" placeholder="Fullstack Developer">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Подзаголовок Hero</label>
+                        <input type="text" id="heroSubtitle" placeholder="Создаю веб-приложения...">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Описание о себе (абзац 1)</label>
+                        <textarea id="aboutText1" rows="3"></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Описание о себе (абзац 2)</label>
+                        <textarea id="aboutText2" rows="3"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="admin-section">
+                <h2 class="section-title">📊 Статистика</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Количество проектов</label>
+                        <input type="number" id="projectsCount" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Лет опыта</label>
+                        <input type="number" id="experienceYears" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Третья статистика (название)</label>
+                        <input type="text" id="stat3Label" placeholder="% Качества">
+                    </div>
+                    <div class="form-group">
+                        <label>Третья статистика (значение)</label>
+                        <input type="number" id="stat3Value" min="0" max="100">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="admin-section">
+                <h2 class="section-title">💻 Навыки</h2>
+                <div class="skills-manager">
+                    <div class="skills-categories" id="skillsContainer">
+                        <!-- Skills will be rendered here -->
+                    </div>
+                    <button class="btn btn-primary" id="addSkillBtn">+ Добавить навык</button>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="admin-section">
+                <h2 class="section-title">🚀 Проекты</h2>
+                <div class="projects-manager">
+                    <div id="projectsContainer">
+                        <!-- Projects will be rendered here -->
+                    </div>
+                    <button class="btn btn-primary" id="addProjectBtn">+ Добавить проект</button>
+                </div>
+            </section>
+
+            <!-- Contacts Section -->
+            <section class="admin-section">
+                <h2 class="section-title">📧 Контакты</h2>
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label>Email</label>
+                        <input type="email" id="contactEmail">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>GitHub</label>
+                        <input type="url" id="contactGithub" placeholder="https://github.com/username">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Telegram</label>
+                        <input type="text" id="contactTelegram" placeholder="@username">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>LinkedIn (опционально)</label>
+                        <input type="url" id="contactLinkedin" placeholder="https://linkedin.com/in/username">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Color Theme Section -->
+            <section class="admin-section">
+                <h2 class="section-title">🎨 Цветовая тема</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Основной акцент</label>
+                        <input type="color" id="colorAccent1" value="#b38585">
+                    </div>
+                    <div class="form-group">
+                        <label>Вторичный акцент</label>
+                        <input type="color" id="colorAccent2" value="#9d6b6b">
+                    </div>
+                    <div class="form-group">
+                        <label>Третий акцент</label>
+                        <input type="color" id="colorAccent3" value="#d4a5a5">
+                    </div>
+                </div>
+            </section>
+
+            <div class="save-section">
+                <button class="btn btn-success btn-large" id="saveBtn">💾 Сохранить все изменения</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skill Modal -->
+    <div class="modal" id="skillModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Редактировать навык</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Категория</label>
+                    <input type="text" id="skillCategory" placeholder="Frontend & Frameworks">
+                </div>
+                <div class="form-group">
+                    <label>Название навыка</label>
+                    <input type="text" id="skillName" placeholder="React">
+                </div>
+                <div class="form-group">
+                    <label>Иконка (emoji)</label>
+                    <input type="text" id="skillIcon" placeholder="⚛️">
+                </div>
+                <div class="form-group">
+                    <label>Прогресс (%)</label>
+                    <input type="number" id="skillProgress" min="0" max="100" value="100">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelSkillBtn">Отмена</button>
+                <button class="btn btn-danger" id="deleteSkillBtn">Удалить</button>
+                <button class="btn btn-primary" id="saveSkillBtn">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Редактировать проект</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Название проекта</label>
+                    <input type="text" id="projectName" placeholder="E-Commerce Platform">
+                </div>
+                <div class="form-group">
+                    <label>Описание</label>
+                    <textarea id="projectDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Ссылка на проект</label>
+                    <input type="url" id="projectUrl" placeholder="https://github.com/...">
+                </div>
+                <div class="form-group">
+                    <label>Технологии (через запятую)</label>
+                    <input type="text" id="projectTags" placeholder="React, Node.js, MongoDB">
+                </div>
+                <div class="form-group">
+                    <label>Цвет градиента</label>
+                    <select id="projectGradient">
+                        <option value="1">Градиент 1 (бордовый)</option>
+                        <option value="2">Градиент 2 (розовый)</option>
+                        <option value="3">Градиент 3 (светлый)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelProjectBtn">Отмена</button>
+                <button class="btn btn-danger" id="deleteProjectBtn">Удалить</button>
+                <button class="btn btn-primary" id="saveProjectBtn">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>

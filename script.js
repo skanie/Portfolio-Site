@@ -1,3 +1,172 @@
+// Load portfolio data from localStorage
+let portfolioData = null;
+
+function loadPortfolioData() {
+    const stored = localStorage.getItem('portfolioData');
+    if (stored) {
+        portfolioData = JSON.parse(stored);
+        updatePageContent();
+    }
+}
+
+function updatePageContent() {
+    if (!portfolioData) return;
+
+    // Update hero section
+    const heroTitle = document.querySelector('.hero-title .line:first-child');
+    const gradientText = document.querySelector('.gradient-text');
+    const heroSubtitle = document.querySelector('.hero-subtitle');
+    
+    if (heroTitle) heroTitle.textContent = `Привет, я ${portfolioData.personal.name}`;
+    if (gradientText) {
+        gradientText.textContent = portfolioData.personal.position;
+        // Re-apply typing effect
+        const text = gradientText.textContent;
+        gradientText.textContent = '';
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                gradientText.textContent += text.charAt(i);
+                i++;
+                setTimeout(type, 100);
+            }
+        }
+        setTimeout(type, 800);
+    }
+    if (heroSubtitle) heroSubtitle.textContent = portfolioData.personal.heroSubtitle;
+
+    // Update about section
+    const aboutLead = document.querySelector('.about-text .lead');
+    const aboutParagraphs = document.querySelectorAll('.about-text p:not(.lead)');
+    
+    if (aboutLead) aboutLead.textContent = portfolioData.personal.aboutText1;
+    if (aboutParagraphs[0]) aboutParagraphs[0].textContent = portfolioData.personal.aboutText2;
+
+    // Update stats
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const statLabels = document.querySelectorAll('.stat-label');
+    
+    if (statNumbers[0]) statNumbers[0].dataset.target = portfolioData.stats.projectsCount;
+    if (statNumbers[1]) statNumbers[1].dataset.target = portfolioData.stats.experienceYears;
+    if (statNumbers[2]) statNumbers[2].dataset.target = portfolioData.stats.stat3Value;
+    if (statLabels[2]) statLabels[2].textContent = portfolioData.stats.stat3Label;
+
+    // Update skills
+    updateSkills();
+
+    // Update projects
+    updateProjects();
+
+    // Update contacts
+    updateContacts();
+
+    // Update colors
+    updateColors();
+}
+
+function updateSkills() {
+    const skillsContainer = document.querySelector('.skills .container');
+    if (!skillsContainer || !portfolioData.skills.length) return;
+
+    // Group skills by category
+    const grouped = portfolioData.skills.reduce((acc, skill) => {
+        if (!acc[skill.category]) acc[skill.category] = [];
+        acc[skill.category].push(skill);
+        return acc;
+    }, {});
+
+    const html = `
+        <h2 class="section-title">Технологии</h2>
+        <div class="skills-categories">
+            ${Object.entries(grouped).map(([category, skills]) => `
+                <div class="skill-category">
+                    <h3 class="category-title">${category}</h3>
+                    <div class="skills-grid">
+                        ${skills.map(skill => `
+                            <div class="skill-card">
+                                <div class="skill-icon">${skill.icon}</div>
+                                <h4>${skill.name}</h4>
+                                <div class="skill-progress">
+                                    <div class="progress-bar" data-progress="${skill.progress}"></div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+
+    skillsContainer.innerHTML = html;
+
+    // Re-observe skill cards
+    document.querySelectorAll('.skill-card').forEach(el => observer.observe(el));
+    document.querySelectorAll('.skill-category').forEach(el => observer.observe(el));
+}
+
+function updateProjects() {
+    const projectsGrid = document.querySelector('.projects-grid');
+    if (!projectsGrid || !portfolioData.projects.length) return;
+
+    projectsGrid.innerHTML = portfolioData.projects.map(project => `
+        <div class="project-card">
+            <div class="project-image project-gradient-${project.gradient}">
+                <div class="project-overlay">
+                    <a href="${project.url}" class="project-link" target="_blank" rel="noopener">Посмотреть</a>
+                </div>
+            </div>
+            <div class="project-info">
+                <h3>${project.name}</h3>
+                <p>${project.description}</p>
+                <div class="project-tags">
+                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    // Re-observe project cards
+    document.querySelectorAll('.project-card').forEach(el => observer.observe(el));
+}
+
+function updateContacts() {
+    const contactMethods = document.querySelector('.contact-methods');
+    if (!contactMethods) return;
+
+    const contacts = [
+        { icon: '📧', text: portfolioData.contacts.email, href: `mailto:${portfolioData.contacts.email}` },
+        { icon: '💻', text: portfolioData.contacts.github.replace('https://', ''), href: portfolioData.contacts.github },
+        { icon: '✈️', text: portfolioData.contacts.telegram, href: `https://t.me/${portfolioData.contacts.telegram.replace('@', '')}` }
+    ];
+
+    if (portfolioData.contacts.linkedin) {
+        contacts.push({
+            icon: '💼',
+            text: portfolioData.contacts.linkedin.replace('https://', ''),
+            href: portfolioData.contacts.linkedin
+        });
+    }
+
+    contactMethods.innerHTML = contacts.map(contact => `
+        <a href="${contact.href}" class="contact-item" ${contact.href.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}>
+            <span class="contact-icon">${contact.icon}</span>
+            <span>${contact.text}</span>
+        </a>
+    `).join('');
+}
+
+function updateColors() {
+    if (!portfolioData.colors) return;
+
+    const root = document.documentElement;
+    root.style.setProperty('--accent-1', portfolioData.colors.accent1);
+    root.style.setProperty('--accent-2', portfolioData.colors.accent2);
+    root.style.setProperty('--accent-3', portfolioData.colors.accent3);
+}
+
+// Load data on page load
+loadPortfolioData();
+
 // Particles Animation
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
@@ -391,4 +560,4 @@ document.addEventListener('click', (e) => {
     }
 });
 
-console.log('%cПортфолио загружено!', 'color: #b38585;');
+console.log('%c✨ Портфолио Ильи загружено! ✨', 'color: #b38585; font-size: 20px; font-weight: bold;');
