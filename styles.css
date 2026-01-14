@@ -59,7 +59,7 @@ body {
     margin: 0 auto;
     padding: 1rem 2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -96,7 +96,7 @@ body {
 }
 
 .mobile-menu-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(7px, 7px);
+    transform: rotate(45deg) translate(5px, 5px);
 }
 
 .mobile-menu-btn.active span:nth-child(2) {
@@ -104,7 +104,7 @@ body {
 }
 
 .mobile-menu-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 .nav-menu {
@@ -205,6 +205,7 @@ body {
 
 .hero-buttons {
     display: flex;
+	align-items: center;
     gap: 1.5rem;
     justify-content: center;
     flex-wrap: wrap;
@@ -801,6 +802,7 @@ body {
         background: rgba(26, 19, 21, 0.98);
         flex-direction: column;
         padding: 2rem;
+		align-items: center;
         gap: 1.5rem;
         transform: translateY(-100%);
         opacity: 0;
