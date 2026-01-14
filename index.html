@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Илья — Fullstack Developer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="logo">skanie</a>
+            <button class="mobile-menu-btn" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Главная</a></li>
+                <li><a href="#about" class="nav-link">О себе</a></li>
+                <li><a href="#skills" class="nav-link">Навыки</a></li>
+                <li><a href="#projects" class="nav-link">Проекты</a></li>
+                <li><a href="#contact" class="nav-link">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <canvas id="particles"></canvas>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="line">Привет, я Илья</span>
+                <span class="line gradient-text">Fullstack Developer</span>
+            </h1>
+            <p class="hero-subtitle">Создаю веб-приложения и десктопные решения с фокусом на качество кода</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">Мои работы</a>
+                <a href="#contact" class="btn btn-secondary">Связаться</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">О себе</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="lead">Разработчик с широким стеком технологий — от веб-приложений до десктопных решений и мобильной разработки.</p>
+                    <p>Работаю с современными фреймворками и языками программирования. Умею создавать как frontend, так и backend части приложений. Специализируюсь на React, десктопной разработке (Tauri, Electron, WPF) и мобильных приложениях на Android.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="5">0</span>
+                            <span class="stat-label">Проектов</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="7">0</span>
+                            <span class="stat-label">Лет опыта</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="100">0</span>
+                            <span class="stat-label">% Качества</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="url(#gradient1)" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.6,90,-16.3,88.5,-0.9C87,14.6,81.4,29.2,73.1,42.8C64.8,56.4,53.8,69,40.1,76.8C26.4,84.6,10,87.6,-5.8,87.1C-21.6,86.6,-36.8,82.6,-50.2,74.9C-63.6,67.2,-75.2,55.8,-82.4,41.8C-89.6,27.8,-92.4,11.2,-90.8,-4.7C-89.2,-20.6,-83.2,-35.8,-74.1,-49.2C-65,-62.6,-52.8,-74.2,-38.5,-81.3C-24.2,-88.4,-7.8,-90.9,6.2,-91.1C20.2,-91.3,30.6,-83.6,44.7,-76.4Z" transform="translate(100 100)" />
+                            <defs>
+                                <linearGradient id="gradient1">
+                                    <stop offset="0%" style="stop-color:#c9a0a0" />
+                                    <stop offset="100%" style="stop-color:#9d6b6b" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+        <div class="container">
+            <h2 class="section-title">Технологии</h2>
+            <div class="skills-categories">
+                <div class="skill-category">
+                    <h3 class="category-title">Frontend & Frameworks</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-icon">⚛️</div>
+                            <h4>React</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">Desktop Development</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-icon">🦀</div>
+                            <h4>Tauri</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon">⚡</div>
+                            <h4>Electron</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon">🪟</div>
+                            <h4>WPF</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">Mobile Development</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-icon">🤖</div>
+                            <h4>Android Studio</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon">🎨</div>
+                            <h4>Compose</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon">🔷</div>
+                            <h4>Kotlin</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">Languages</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-icon">🐍</div>
+                            <h4>Python</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon">💜</div>
+                            <h4>C#</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon">⚙️</div>
+                            <h4>C++</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon">🦀</div>
+                            <h4>Rust</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="category-title">Databases</h3>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-icon">🗄️</div>
+                            <h4>MySQL</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="100"></div>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon">🐘</div>
+                            <h4>PostgreSQL</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <h2 class="section-title">Проекты</h2>
+            <p class="projects-subtitle">Над чем я работал и работаю</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image project-gradient-1">
+                        <div class="project-overlay">
+                            <a href="https://github.com/skanie" class="project-link" target="_blank" rel="noopener">Смотреть на GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Веб-приложения</h3>
+                        <p>Разработка современных веб-приложений с использованием React и современного стека</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Web</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image project-gradient-2">
+                        <div class="project-overlay">
+                            <a href="https://github.com/skanie" class="project-link" target="_blank" rel="noopener">Смотреть на GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Десктопные приложения</h3>
+                        <p>Кроссплатформенные приложения на Tauri, Electron и WPF для различных задач</p>
+                        <div class="project-tags">
+                            <span class="tag">Tauri</span>
+                            <span class="tag">Rust</span>
+                            <span class="tag">WPF</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image project-gradient-3">
+                        <div class="project-overlay">
+                            <a href="https://github.com/skanie" class="project-link" target="_blank" rel="noopener">Смотреть на GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Мобильная разработка</h3>
+                        <p>Android-приложения с современным UI на Jetpack Compose и Kotlin</p>
+                        <div class="project-tags">
+                            <span class="tag">Android</span>
+                            <span class="tag">Kotlin</span>
+                            <span class="tag">Compose</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Свяжитесь со мной</h3>
+                    <p>Открыт для новых проектов и интересных предложений. Буду рад обсудить ваши идеи!</p>
+                    <div class="contact-methods">
+                        <a href="mailto:jabenkoila@gmail.com" class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <span>jabenkoila@gmail.com</span>
+                        </a>
+                        <a href="https://github.com/skanie" class="contact-item" target="_blank" rel="noopener">
+                            <span class="contact-icon">💻</span>
+                            <span>github.com/skanie</span>
+                        </a>
+                        <a href="https://t.me/ilyazhabenko" class="contact-item" target="_blank" rel="noopener">
+                            <span class="contact-icon">✈️</span>
+                            <span>@ilyazhabenko</span>
+                        </a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Ваше имя" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea placeholder="Сообщение" rows="7" required></textarea>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Илья Жабенко. Создано с Любовью ❤️</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
